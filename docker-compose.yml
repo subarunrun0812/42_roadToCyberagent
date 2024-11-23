@@ -12,9 +12,24 @@ services:
      - "3000:3000"
    volumes:
       - ./src:/go/src/app
+
+  phpMyAdmin:
+    image: phpmyadmin/phpmyadmin
+    platform: linux/amd64 # for M1 Mac
+    container_name: phpMyAdmin
+    depends_on:
+      - db
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: user
+      PMA_PASSWORD: pass
+    ports:
+      - "4000:80"
+      
   db:
     image: mysql:8.0
     container_name: mysql
+    platform: linux/amd64 # for M1 Mac
     environment:
       MYSQL_ROOT_PASSWORD: pass
       MYSQL_DATABASE: game
@@ -23,6 +38,12 @@ services:
       TZ: 'Asia/Tokyo'
     ports: 
     - "3306:3306"
+    volumes:
+      - ./mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+    driver: local
     
 
     
