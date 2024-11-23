@@ -8,10 +8,10 @@ services:
    tty: true
    depends_on:
      - db
-   ports:
-     - "3000:3000"
    volumes:
       - ./src:/go/src/app
+   ports:
+     - "8000:8000"
 
   phpMyAdmin:
     image: phpmyadmin/phpmyadmin
@@ -24,7 +24,7 @@ services:
       PMA_USER: user
       PMA_PASSWORD: pass
     ports:
-      - "4000:80"
+      - "4000:4000"
       
   db:
     image: mysql:8.0
@@ -41,10 +41,20 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: swagger-ui
+    environment:
+      SWAGGER_JSON: /openapi.yml
+    ports:
+      - "3000:8080"
+    volumes:
+      - ./api/openapi.yml:/openapi.yml
+
 volumes:
   mysql_data:
     driver: local
-    
+
 
     
 
