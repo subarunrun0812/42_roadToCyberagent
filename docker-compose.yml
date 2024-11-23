@@ -6,7 +6,26 @@ services:
    container_name: go
    working_dir: /go/src/app
    tty: true
+   depends_on:
+     - db
    ports:
      - "3000:3000"
    volumes:
       - ./src:/go/src/app
+  db:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: game
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      TZ: 'Asia/Tokyo'
+    ports: 
+    - "3306:3306"
+    
+
+    
+
+# phpMyAdmin localhost:4000
+# swagger localhost:3000
