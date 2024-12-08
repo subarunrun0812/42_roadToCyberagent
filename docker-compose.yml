@@ -32,7 +32,7 @@ services:
     platform: linux/amd64 # for M1 Mac
     environment:
       MYSQL_ROOT_PASSWORD: pass
-      MYSQL_DATABASE: game
+      MYSQL_DATABASE: 42tokyo-road-to-dojo-go_db-data
       MYSQL_USER: user
       MYSQL_PASSWORD: pass
       TZ: 'Asia/Tokyo'
