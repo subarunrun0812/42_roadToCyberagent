@@ -5,7 +5,6 @@ title: Game Database ER Diagram
 erDiagram
     USERS ||--o{ GAME_RECORDS : "plays"
     USERS ||--o{ USER_ITEMS : "owns"
-    USERS ||--o{ GACHA_RECORDS : "uses"
     ITEM_MASTER ||--o{ USER_ITEMS : "included_in"
     ITEM_MASTER ||--o{ GACHA_MASTER : "available_in"
     
@@ -31,7 +30,7 @@ erDiagram
     ITEM_MASTER {
         int id PK "アイテムID"
         string name "アイテム名"
-        string rarity "レアリティ"
+        int rarity "レアリティ"
     }
 
     GACHA_MASTER {
@@ -41,11 +40,5 @@ erDiagram
         decimal probability "排出確率"
         int single_cost "単発コスト"
         int multi_cost "10連コスト"
-    }
-
-    GACHA_RECORDS {
-        uuid user_id FK "ユーザーID"
-        int item_id FK "獲得アイテムID"
-        boolean is_multi "10連フラグ"
     }
 ```
