@@ -24,7 +24,7 @@ services:
       PMA_USER: user
       PMA_PASSWORD: pass
     ports:
-      - "4000:4000"
+      - "4000:80"
       
   db:
     image: mysql:8.0
