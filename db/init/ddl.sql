@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS USER_ITEMS (
 );
 
 CREATE TABLE IF NOT EXISTS GACHA_MASTER (
+    -- id: 異なるガチャを識別するためのID (初心者ガチャ、期間限定ガチャ、など)
     id INT PRIMARY KEY,
     name VARCHAR(255),
     item_id INT,

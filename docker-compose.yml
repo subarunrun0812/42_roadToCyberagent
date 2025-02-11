@@ -13,10 +13,10 @@ services:
    ports:
      - "8000:8000"
 
-  phpMyAdmin:
+  phpmyAdmin:
     image: phpmyadmin/phpmyadmin
     platform: linux/amd64 # for M1 Mac
-    container_name: phpMyAdmin
+    container_name: phpmyAdmin
     depends_on:
       - mysql
     environment:
