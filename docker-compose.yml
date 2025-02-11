@@ -12,19 +12,6 @@ services:
       - ./src:/go/src/app
    ports:
      - "8000:8000"
-
-  phpmyAdmin:
-    image: phpmyadmin/phpmyadmin
-    platform: linux/amd64 # for M1 Mac
-    container_name: phpmyAdmin
-    depends_on:
-      - mysql
-    environment:
-      PMA_HOST: mysql
-      PMA_USER: user
-      PMA_PASSWORD: pass
-    ports:
-      - "4000:80"
       
   mysql:
     image: mysql:8.0
@@ -41,6 +28,27 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
       - ./db/init:/docker-entrypoint-initdb.d
+
+  phpmyAdmin:
+    image: phpmyadmin/phpmyadmin
+    platform: linux/amd64 # for M1 Mac
+    container_name: phpmyAdmin
+    depends_on:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: user
+      PMA_PASSWORD: pass
+    ports:
+      - "4000:80"
+  
+  radis:
+    image: redis:7.4
+    container_name: radis
+    platform: linux/amd64 # for M1 Mac
+    ports:
+      - "6379:6379"
+    # NOTE: volumesを追加するかも
 
   swagger-ui:
     image: swaggerapi/swagger-ui
