@@ -1,39 +1,25 @@
-# api/openapi.json
-{
-  "openapi": "3.0.0",
-  "info": {
-    "title": "Game API",
-    "version": "1.0.0",
-    "description": "API documentation for Roat to Cyberagent"
-  },
-  "paths": {
-    "/api/games": {
-      "get": {
-        "summary": "Get all games",
-        "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "integer"
-                      },
-                      "name": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
+openapi: 3.0.0
+info:
+  title: "Game API"
+  version: "1.0.0"
+  description: "API documentation for Road to CyberAgent"
+servers:
+  - url: "http://localhost:8000"
+paths:
+  /api/games:
+    get:
+      summary: "Get all games"
+      responses:
+        "200":
+          description: "Successful response"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    name:
+                      type: string

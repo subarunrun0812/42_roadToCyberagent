@@ -4,14 +4,16 @@ services:
   go:
    image: golang:1.23
    container_name: go
-   working_dir: /go/src/app
+   working_dir: /go/src
    tty: true
    depends_on:
      - mysql
    volumes:
-      - ./src:/go/src/app
+      - ./src:/go/src
    ports:
      - "8000:8000"
+   command: ["go", "run", "main.go"]
+
       
   mysql:
     image: mysql:8.0
