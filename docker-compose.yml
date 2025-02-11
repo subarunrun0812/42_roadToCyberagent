@@ -7,7 +7,7 @@ services:
    working_dir: /go/src/app
    tty: true
    depends_on:
-     - db
+     - mysql
    volumes:
       - ./src:/go/src/app
    ports:
@@ -18,7 +18,7 @@ services:
     platform: linux/amd64 # for M1 Mac
     container_name: phpMyAdmin
     depends_on:
-      - db
+      - mysql
     environment:
       PMA_HOST: mysql
       PMA_USER: user
@@ -26,7 +26,7 @@ services:
     ports:
       - "4000:80"
       
-  db:
+  mysql:
     image: mysql:8.0
     container_name: mysql
     platform: linux/amd64 # for M1 Mac
