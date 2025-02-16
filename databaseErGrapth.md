@@ -37,7 +37,6 @@ erDiagram
         int id PK "ガチャID"
         string name "ガチャ名"
         int item_id FK "アイテムID"
-        decimal probability "排出確率"
         int single_cost "単発コスト"
         int multi_cost "10連コスト"
     }
