@@ -35,3 +35,11 @@ CREATE TABLE IF NOT EXISTS GACHA_MASTER (
     multi_cost INT,
     FOREIGN KEY (item_id) REFERENCES ITEM_MASTER(id)
 );
+
+CREATE TABLE IF NOT EXISTS GACHA_PROBABILITY (
+    gacha_id INT,
+    item_id INT,
+    item_probability FLOAT,
+    FOREIGN KEY (gacha_id) REFERENCES GACHA_MASTER(id),
+    FOREIGN KEY (item_id) REFERENCES ITEM_MASTER(id)
+)

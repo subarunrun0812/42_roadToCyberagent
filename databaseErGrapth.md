@@ -3,10 +3,12 @@
 title: Game Database ER Diagram
 ---
 erDiagram
-    USERS ||--o{ GAME_RECORDS : "plays"
-    USERS ||--o{ USER_ITEMS : "owns"
-    ITEM_MASTER ||--o{ USER_ITEMS : "included_in"
-    ITEM_MASTER ||--o{ GACHA_MASTER : "available_in"
+
+    USERS ||--o{ GAME_RECORDS : "プレイ"
+    USERS ||--o{ USER_ITEMS : "所有"
+    ITEM_MASTER ||--o{ USER_ITEMS : "含まれる"
+    GACHA_MASTER ||--o{ GACHA_PROBABILITY : "ガチャに含まれる"
+    ITEM_MASTER ||--o{ GACHA_PROBABILITY : "排出対象"
     
     USERS {
         uuid UUID PK "ユーザーID"
@@ -39,5 +41,10 @@ erDiagram
         int item_id FK "アイテムID"
         int single_cost "単発コスト"
         int multi_cost "10連コスト"
+    }
+    GACHA_PROBABILITY {
+        int id FK "ガチャID"
+        int id FK "アイテムID"
+        int item_probability "アイテム出現確率"
     }
 ```
