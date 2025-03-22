@@ -11,8 +11,9 @@ bash-5.1# mysql -u root -p
 まだvolumeを設定していないので、ランキング機能を作るときなどに追加する必要があるかも
 
 ### IV.5 Swagger UI
+[RESTful APIとは](https://qiita.com/NagaokaKenichi/items/0647c30ef596cedf4bf2)
 swagger-uiのweb上で、`/api/games`が取得できない問題。
-→swagger-uioコンテナ(localhost:3000)がgoコンテナ(localhost:8000)にアクセスすることを許可したら解決した。keyword: CORS（Cross-Origin Resource Sharing）
+→swagger-uiコンテナ(localhost:3000)がgoコンテナ(localhost:8000)にアクセスすることを許可したら解決した。keyword: CORS（Cross-Origin Resource Sharing）
 swagger-uiで[yml syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html)の勉強をした
 
 ER図の `||--o{` という表記は 「1対多の関係 (1:N)」 を示しています。
@@ -20,6 +21,7 @@ ER図の `||--o{` という表記は 「1対多の関係 (1:N)」 を示して�
 
 `||` → 1（one） を表す（必須の関係）
 `o{` → 多（many） を表す（0個以上の関係）
+
 
 **apiの検証のためにgoで定義する**
 GoでAPIエンドポイントを実装した。
@@ -60,3 +62,20 @@ mysql> select * from <テーブル名>
 ```
 
 # Exercise 2
+### Go
+標準パッケージを用いて、API serverを実装する。GinなどのWeb FrameWorkは使用禁止
+
+
+
+
+/pkg/server/handler の実装
+→ POST /user/create を処理するハンドラーを作成
+
+/pkg/server/server.go へのルーティングの追加
+→ POST /user/create のリクエストが適切なハンドラーにルーティングされるように設定
+
+Token の生成処理の実装
+→ 認証用のトークン（ランダムな文字列や UUID など）の生成を行う
+
+MySQL テーブルへのアクセス処理（DAO）の実装
+→ ユーザー情報を MySQL に保存・取得するためのデータアクセス処理（DAO: Data Access Object）を実装
