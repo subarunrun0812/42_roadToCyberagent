@@ -5,6 +5,9 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"path/to/your/project/dao"
+
+	"github.com/google/uuid"
 )
 
 // DB接続用の変数
@@ -49,10 +52,16 @@ func createUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// ユーザーをDBに登録
 	newUUID := uuid.New().String()
-	_, err := db.Exec("INSERT INTO users (id, username, coins, high_score) VALUES (?, ?, ?, ?)", newUUID, request.UsernName, request.Coins, request.HighScore)
-	if err != nil {
-		log.Println("Error inserting user: ", err)
+	user := dao.User{
+		ID:        newUUID,
+		UserName:  request.UsernName,
+		Coins:     0, // coinsを0で初期化
+		HighScore: 0, // highScoreを0で初期化
+	}
+
+	if err := dao.CreateUser(db, user); err != nil {
 		http.Error(w, "Failed to insert user", http.StatusInternalServerError)
 		return
 	}
@@ -82,7 +91,7 @@ func main() {
 	http.HandleFunc("/user/create", createUser)
 
 	// サーバー起動
-	port := "8000" // コンテナないのポート
+	port := "8000"
 	log.Println("Server running on port " + port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }

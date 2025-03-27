@@ -65,7 +65,8 @@ mysql> select * from <テーブル名>
 ### Go
 標準パッケージを用いて、API serverを実装する。GinなどのWeb FrameWorkは使用禁止
 
-
+1. ユーザー作成の全体の流れを掴む
+2. 
 
 
 /pkg/server/handler の実装
